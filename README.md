@@ -1,5 +1,7 @@
 # Email Classification with BERT
-This project finetunes a pretrained text classification `bert-base-uncased` model on an weirdly small dataset in order to implement email classification on the provided dataset.
+The goal of this project is to create an easy to use program that will help classify emails into their appropriate binary classes.   
+
+This was achieved by finetuning a pretrained text classification `bert-base-uncased` model on a very small dataset in order to implement email classification for incoming emails.
 ### Background to the problem 
 The problem assumes that Mary, a college student adviser helps students solve timetable clashes over email.
 Suppose Mary is so helpful that students want to share her email address with their friends.  
@@ -51,7 +53,7 @@ The [predict.py](https://github.com/Akawi85/Email-classification-with-bert/blob/
 The [test.py](https://github.com/Akawi85/Email-classification-with-bert/blob/main/test.py) script implements unit testing of the various functionalities of the program.
 
 ### Running the program on your machine
-- Clone the repo into a folder on your local machine. You can do that by running this command  
+- Clone the repo into a folder on your local machine. You can do that by running this command:   
 `https://github.com/Akawi85/Email-classification-with-bert.git` in your terminal.
   - *Note that the model used for prediction is about `418` megabytes, therefore you may need to install the git extension **git lfs** in order to get the actual model file. Follow [this guide](https://www.atlassian.com/git/tutorials/git-lfs) for a thorough walkthrough on how to implement this*
 - Move into the repo directory and create and activate a python virtual environment in order to install all the program requirements in an isolated environment. If you're using Windows Subsystem for Linux (WSL), I recommend [this document](https://docs.google.com/document/d/19IpozHrM38HzVSI4PjwRFJSNeLdcceUKg98fr2Db-DQ/edit?usp=sharing), where I outlined detailed steps for creating python virtual environments in WSL.
