@@ -1,9 +1,9 @@
 # Email Classification with BERT
-The goal of this project is to create an easy to use program that will help classify emails into their appropriate binary classes.   
+The goal of this project is to create an easy to use program that will help classify incoming emails into their appropriate binary classes.   
 
 This was achieved by finetuning a pretrained text classification `bert-base-uncased` model on a very small dataset in order to implement email classification for incoming emails.
 ### Background to the problem 
-The problem assumes that Mary, a college student adviser helps students solve timetable clashes over email.
+The assumption is that Mary, a college student adviser helps students solve timetable clashes over email.
 Suppose Mary is so helpful that students want to share her email address with their friends.  
 To ensure students know they can share her email address, Mary has updated her signature to say, If you found this conversation helpful, feel free to share my email address with your friends.  
 With the updated signature, Mary now gets about 250 emails from students a week either asking if they can share her email address with other students, or saying they’ve shared her email address with other students.
@@ -28,15 +28,15 @@ Mary has asked the college’s IT department to help her find or build some kind
 
 ### [Data Preparation, Tokenization and Modelling](https://github.com/Akawi85/Email-classification-with-bert/blob/main/train_model.ipynb)
 ##### Preparing the Dataset
-From the problem statement, the sample emails provided by Mary constituted solely the dataset used for training this model. The sample email are just eleven (11) and since Mary is classifying the email into just two exclusive classes, a binary classification approach was adopted in executing the task.  
+From the problem statement, the sample emails provided by Mary made up the dataset used for training this model. The sample email are just eleven (11) and since Mary is classifying the emails into just two exclusive classes, a binary classification approach was adopted in executing the task.  
 Since the dataset is so small, the correct class labels were manually allocated to each example email and loaded as a pandas dataframe.
 See [the notebook](https://github.com/Akawi85/Email-classification-with-bert/blob/main/train_model.ipynb) for details on approaches taken in preparing the dataset.
 
 ##### Tokenization and Modelling
 The curated/preprocessed dataset was tokenized using the pretrained `bert-base-uncased` checkpoint.  
 The same pretrained checkpoint was used for training the model using the `AutoModelForSequenceClassification` API.  
-The model trained on the sample emails dataset for 20 epochs and achieved an `accuracy` and `f1` scores of `1.0` and `1.0` on the training dataset respectively.  
-This metrics are highly flawed because we are evaluating on the same training set and can be ascribed to overfitting, but since we have no test set to evaluate on given the size of the sample data, we can assume that for the model to overfit at 20 epochs, it actually did well in learning to classify the training dataset to the extent of overfitting.  
+The model trained on the sample emails dataset for 20 epochs and achieved `accuracy` and `f1` scores of `1.0` and `1.0` on the training dataset respectively.  
+These metrics are highly flawed because we are evaluating on the same training set and that can be ascribed to overfitting, but since we have no test set to evaluate on, given the size of the sample data, we can assume that for the model to overfit at 20 epochs, it actually did well in learning to classify the training dataset to the extent of overfitting.  
 All the model training checkpoints and weights were downloaded and saved in the [custom_model](https://github.com/Akawi85/Email-classification-with-bert/tree/main/custom_model) directory.
 
 The [train_model.ipynb](https://github.com/Akawi85/Email-classification-with-bert/blob/main/train_model.ipynb) script shows how all of the data preparation, tokenization and modelling steps were implemented.
@@ -64,7 +64,7 @@ The [test.py](https://github.com/Akawi85/Email-classification-with-bert/blob/mai
 
   - ***Notes***  
     - *The that the program expects you to pass the content of the email you wish to classify as required argument enclosed in single or double quotes as shown above*
-    - *You can seek help for running the program by calling the help flags `-h` or `--help` as follows:*
+    - *You can seek help for running the program by calling the help flags `-h` or `--help` as follows:*  
      `python3 predict.py -h`
 - Run program tests as follows:  
 `pytest test.py`
