@@ -33,21 +33,46 @@ See [the notebook](https://github.com/Akawi85/Email-classification-with-bert/blo
 ##### Tokenization and Modelling
 The curated/preprocessed dataset was tokenized using the pretrained `bert-base-uncased` checkpoint.  
 The same pretrained checkpoint was used for training the model using the `AutoModelForSequenceClassification` API.  
-The model trained on the sample emails dataset for 20 epochs and achieved an accuracy and f1 scores of `1.0` and `1.0` on the training dataset respectively.  
+The model trained on the sample emails dataset for 20 epochs and achieved an `accuracy` and `f1` scores of `1.0` and `1.0` on the training dataset respectively.  
 This metrics are highly flawed because we are evaluating on the same training set and can be ascribed to overfitting, but since we have no test set to evaluate on given the size of the sample data, we can assume that for the model to overfit at 20 epochs, it actually did well in learning to classify the training dataset to the extent of overfitting.  
 All the model training checkpoints and weights were downloaded and saved in the [custom_model](https://github.com/Akawi85/Email-classification-with-bert/tree/main/custom_model) directory.
 
-[The train_model.ipynb script](https://github.com/Akawi85/Email-classification-with-bert/blob/main/train_model.ipynb) shows how all of the data preparation, tokenization and modelling steps were implemented.
+The [train_model.ipynb](https://github.com/Akawi85/Email-classification-with-bert/blob/main/train_model.ipynb) script shows how all of the data preparation, tokenization and modelling steps were implemented.
 
 ### Creating a Command Line Program that Predicts Email Class
 The ultimate goal of the project is to create an easy to use program that will help classify Mary's emails into the appropriate classes.  
 To do this, a program was created using the trained model, that accepts user inputs from the command line (email body) and outputs the class of the input as shown below:
+
 ![program_usage](./img/program_test_1.png)
 
-[The predict.py script](https://github.com/Akawi85/Email-classification-with-bert/blob/main/predict.py) shows how the program was implemented in the command line as well as how errors and other input format specifications were handled when passing arguments to the program.  
+The [predict.py](https://github.com/Akawi85/Email-classification-with-bert/blob/main/predict.py) script shows how the program was implemented in the command line as well as how errors and other input format specifications were handled when passing arguments to the program.  
 
 ### [Testing](https://github.com/Akawi85/Email-classification-with-bert/blob/main/test.py)
 The [test.py](https://github.com/Akawi85/Email-classification-with-bert/blob/main/test.py) script implements unit testing of the various functionalities of the program.
 
 ### Running the program on your machine
+- Clone the repo into a folder on your local machine. You can do that by running this command  
+`https://github.com/Akawi85/Email-classification-with-bert.git` in your terminal.
+  - *Note that the model used for prediction is about `418` megabytes, therefore you may need to install the git extension **git lfs** in order to get the actual model file. Follow [this guide](https://www.atlassian.com/git/tutorials/git-lfs) for a thorough walkthrough on how to implement this*
+- Move into the repo directory and create and activate a python virtual environment in order to install all the program requirements in an isolated environment. If you're using Windows Subsystem for Linux (WSL), I recommend [this document](https://docs.google.com/document/d/19IpozHrM38HzVSI4PjwRFJSNeLdcceUKg98fr2Db-DQ/edit?usp=sharing), where I outlined detailed steps for creating python virtual environments in WSL.
+- Install the program requirement files in the newly created virtual environment by running the command:  
+`pip install -r requirements.txt`
+- Run the program by calling the `predict.py` script and providing the required argument `email_text`. An example of expected input is:  
+`python3 predict.py "I would love to share your email with my friends, can I go ahead"`  
 
+  - ***Notes***  
+    - *The that the program expects you to pass the content of the email you wish to classify as required argument enclosed in single or double quotes as shown above*
+    - *You can seek help for running the program by calling the help flags `-h` or `--help` as follows:*
+     `python3 predict.py -h`
+- Run program tests as follows:  
+`pytest test.py`
+
+
+***PS: I created the command line program in a WSL environment, therefore you may experience some slight fails when implementing the program following the above guidelines. But a simple google search should suffice in those cases***
+
+### Areas of further improvements
+1. Collect more data for model training, testing and validation
+2. Perform data augmentation for generating synthetic datasets and increase samples
+3. Write more advanced unit tests for the program
+4. Create a web interface as a replacement for command line implementation
+5. Dockerize the program to eliminate operating system dependencies.
